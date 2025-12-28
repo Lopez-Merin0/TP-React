@@ -13,8 +13,19 @@ function App() {
     }, [todos]);
 
     const addTodo = (text) => {
-        const newTodo = { id: crypto.randomUUID(), text, completed: false };
+        const newTodo = {
+            id: crypto.randomUUID(),
+            text,
+            completed: false,
+            priority: 1 
+        };
         setTodos([...todos, newTodo]);
+    };
+
+    const changePriority = (id, newPriority) => {
+        setTodos(todos.map(todo =>
+            todo.id === id ? { ...todo, priority: newPriority } : todo
+        ));
     };
 
     const deleteTodo = (id) => {

@@ -6,35 +6,59 @@ const Todo = ({ todo, deleteTodo, toggleTodo, editTodo }) => {
 
     const handleEdit = () => {
         if (isEditing) {
+            if (newText.trim().length < 4) return alert("Mínimo 4 letras");
             editTodo(todo.id, newText);
         }
         setIsEditing(!isEditing);
     };
 
     return (
-        <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-            {isEditing ? (
+        <div className={`todo-card ${todo.completed ? 'completed' : ''}`}>
+            <div className="priority-section">
                 <input
-                    value={newText}
-                    onChange={(e) => setNewText(e.target.value)}
-                    className="edit-input"
+                    type="range"
+                    min="1" max="3" step="1"
+                    value={todo.priority}
+                    onChange={(e) => changePriority(todo.id, e.target.value)}
                 />
-            ) : (
-                <span className="todo-text">{todo.text}</span>
-            )}
+                <div className="priority-labels">
+                    <span>Baja</span>
+                    <span>Media</span>
+                    <span>Alta</span>
+                </div>
+            </div>
 
-            <div className="todo-actions">
-                <button onClick={() => toggleTodo(todo.id)} title="Completar">
-                    {todo.completed ? '☑️' : '⚪'}
-                </button>
+            <div className={`status-badge ${todo.completed ? 'done' : 'pending'}`}>
+                {todo.completed ? 'REALIZADA' : 'PENDIENTE'}
+            </div>
 
-                <button onClick={handleEdit} title="Editar">
-                    {isEditing ? '💾' : '✏️'}
-                </button>
+            <div className="card-body">
+                {isEditing ? (
+                    <textarea
+                        value={newText}
+                        onChange={(e) => setNewText(e.target.value)}
+                        className="edit-textarea"
+                    />
+                ) : (
+                    <p className="todo-text-display">{todo.text}</p>
+                )}
+            </div>
 
-                <button onClick={() => deleteTodo(todo.id)} title="Eliminar">
-                    🗑️
-                </button>
+            {/* Línea divisoria y acciones inferiores */}
+            <div className="card-footer">
+                <div className="todo-actions-row">
+                    <button onClick={() => toggleTodo(todo.id)} className="action-btn check" title="Completar">
+                        {todo.completed ? '✅' : '✔️'}
+                    </button>
+
+                    <button onClick={() => deleteTodo(todo.id)} className="action-btn delete" title="Eliminar">
+                        🗑️
+                    </button>
+
+                    <button onClick={handleEdit} className="action-btn edit" title="Editar">
+                        {isEditing ? '💾' : '📝'}
+                    </button>
+                </div>
             </div>
         </div>
     );
