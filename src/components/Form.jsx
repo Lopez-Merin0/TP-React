@@ -10,6 +10,10 @@ const Form = ({ addTodo, setFilter }) => {
             setError("El campo no puede estar vacío");
             return;
         }
+        if (value.trim().length < 4) {
+            setError("La tarea es muy cortita, debe de tener al menos 4 letras");
+            return;
+        }
         addTodo(value);
         setValue("");
         setError("");
