@@ -63,6 +63,7 @@ function App() {
                 deleteTodo={deleteTodo}
                 toggleTodo={toggleTodo}
                 editTodo={editTodo}
+                filter={filter}
             />
         </div>
     );
