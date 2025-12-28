@@ -53,6 +53,53 @@ select {
     margin-left: 10px;
     font-weight: bold;
     cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.add-btn:hover {
+    background-color: #a3b18a;
+    transform: scale(1.1);
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 100px;
+    background-color: #4ebf71;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 115%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #4ebf71 transparent transparent;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }
 
 .todo-item {
