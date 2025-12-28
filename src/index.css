@@ -1,53 +1,66 @@
 :root {
-    --bg-color: #e1ebc5;
-    --card-bg: #ffffff;
-    --accent-pink: #ffb7c5;
-    --text-olive: #6b705c;
+    --wood-brown: #5d4037;
+    --paper-cream: #f5f5dc;
+    --leaf-green: #82735c;
+    --accent-olive: #a3b18a;
+    --border-style: 4px solid var(--wood-brown);
 }
 
 body {
-    background-color: var(--bg-color);
-    background-image: radial-gradient(#c5d1a5 2px, transparent 2px);
-    background-size: 30px 30px;
-    font-family: Arial, sans-serif;
-    color: var(--text-olive);
-    display: flex;
+    background-color: #8c9c75;
+    background-image: radial-gradient(var(--leaf-green) 1px, transparent 1px);
+    background-size: 20px 20px;
+    font-family: 'Comic Sans MS', 'cursive', sans-serif;
     justify-content: center;
-    padding: 0;
+    padding: 40px 20px;
+    color: var(--wood-brown);
 }
 
 .app-container {
-    background: var(--card-bg);
+    background-color: var(--paper-cream);
     padding: 2rem;
-    border-radius: 40px;
-    box-shadow: 0 10px 0px #c5d1a5;
+    border: var(--border-style);
+    border-radius: 15px;
     width: 100%;
-    max-width: 400px;
-    border: 4px solid #fff;
+    max-width: 450px;
+    position: relative;
 }
 
 h1 {
     text-align: center;
-    color: var(--text-olive);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--wood-brown);
+    padding-bottom: 10px;
+}
+
+input[type="text"],
+select {
+    background: white;
+    border: 2px solid var(--wood-brown);
+    border-radius: 8px;
+    padding: 10px;
+    color: var(--wood-brown);
+    font-weight: bold;
+}
+
+.add-btn {
+    background: var(--accent-olive);
+    border: 2px solid var(--wood-brown);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .todo-item {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 10px 0;
+    padding: 15px;
+    border: 2px solid var(--wood-brown);
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin: 10px 0;
-    border-bottom: 2px dashed var(--accent-pink);
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-size: 1.2rem;
 }
