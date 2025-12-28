@@ -30,9 +30,8 @@ body {
 h1 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--wood-brown);
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 0;
 }
 
 input[type="text"],
@@ -69,33 +68,95 @@ select {
 
 .tooltip-text {
     visibility: hidden;
-    width: 100px;
-    background-color: #4ebf71;
+    background-color: #795548;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 8px 0;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 14px;
+    padding: 6px 10px;
     position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 115%;
-    transform: translateY(-50%);
+    z-index: 100;
+    font-size: 12px;
+    font-weight: bold;
     opacity: 0;
     transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.priority-tip {
+    background-color: #795548;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.save-tip {
+    background-color: #2a9d8f;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cancel-tip {
+    background-color: #e63946;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.edit-tip {
+    background-color: #f4a261;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.complete-tip {
+    background-color: #4ebf71;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.delete-tip {
+    background-color: #333333;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .tooltip-text::after {
     content: "";
     position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent #4ebf71 transparent transparent;
+    border-color: inherit transparent transparent transparent;
+}
+
+.priority-tip::after {
+    border-top-color: #795548;
+}
+
+.save-tip::after {
+    border-top-color: #2a9d8f;
+}
+
+.cancel-tip::after {
+    border-top-color: #e63946;
+}
+
+.complete-tip::after {
+    border-top-color: #4ebf71;
+}
+
+.edit-tip::after {
+    border-top-color: #f4a261;
+}
+
+.delete-tip::after {
+    border-top-color: #333333;
 }
 
 .tooltip-container:hover .tooltip-text {
@@ -103,10 +164,13 @@ select {
     opacity: 1;
 }
 
+.slider-tooltip {
+    width: 100%;
+}
+
 .todo-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    /* Crea columnas automáticas */
     gap: 20px;
     padding: 20px 0;
     width: 100%;
@@ -227,9 +291,7 @@ input[type="range"] {
     accent-color: #e63946;
 }
 
-.todo-card .tooltip-text {
-    background-color: #4ebf71;
-    bottom: 110%;
-    width: 80px;
-    margin-left: -40px;
+.form-section {
+    margin-top: 0;
+    padding-top: 0;
 }

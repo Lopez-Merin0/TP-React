@@ -20,8 +20,8 @@ const Form = ({ addTodo, setFilter }) => {
     };
 
     return (
-        <div className="form-section">
-            <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+        <div className="form-section" style={{ marginTop: '0' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginTop: '0' }}>
                 <input
                     type="text"
                     placeholder="Añadir nueva tarea..."
@@ -30,7 +30,7 @@ const Form = ({ addTodo, setFilter }) => {
                 />
                 <div className="tooltip-container">
                     <button type="submit" className="add-btn">🌱</button>
-                    <span className="tooltip-text">Añadir tarea</span>
+                    <span className="tooltip-text priority-tip">Añadir tarea</span>
                 </div>
             </form>
 

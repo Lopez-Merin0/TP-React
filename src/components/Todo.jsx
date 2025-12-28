@@ -2,41 +2,43 @@ import { useState } from 'react';
 
 const Todo = ({ todo, deleteTodo, toggleTodo, editTodo }) => {
     const [isEditing, setIsEditing] = useState(false);
-    const [newText, setNewText] = useState(todo.text);
+    const [tempText, setTempText] = useState(todo.text);
+    const [tempPriority, setTempPriority] = useState(todo.priority);
 
-    const handleEdit = () => {
-        if (isEditing) {
-            if (newText.trim().length < 4) return alert("Mínimo 4 letras");
-            editTodo(todo.id, newText);
-        }
-        setIsEditing(!isEditing);
+    const handleSave = () => {
+        if (tempText.trim().length < 4) return alert("Mínimo 4 caracteres");
+        editTodo(todo.id, tempText, tempPriority);
+        setIsEditing(false);
     };
 
     return (
         <div className={`todo-card ${todo.completed ? 'completed' : ''}`}>
             <div className="priority-section">
-                <input
-                    type="range"
-                    min="1" max="3" step="1"
-                    value={todo.priority}
-                    onChange={(e) => changePriority(todo.id, e.target.value)}
-                />
+                <div className="tooltip-container slider-tooltip">
+                    <input
+                        type="range" min="1" max="3" step="1"
+                        value={isEditing ? tempPriority : todo.priority}
+                        onChange={(e) => setTempPriority(Number(e.target.value))}
+                        disabled={!isEditing}
+                    />
+                    <span className="tooltip-text priority-tip">
+                        Prioridad: {tempPriority == 1 ? 'Baja' : tempPriority == 2 ? 'Media' : 'Alta'}
+                    </span>
+                </div>
                 <div className="priority-labels">
-                    <span>Baja</span>
-                    <span>Media</span>
-                    <span>Alta</span>
+                    <span>Baja</span><span>Media</span><span>Alta</span>
                 </div>
             </div>
 
             <div className={`status-badge ${todo.completed ? 'done' : 'pending'}`}>
-                {todo.completed ? 'REALIZADA' : 'PENDIENTE'}
+                ● {todo.completed ? 'REALIZADA' : 'PENDIENTE'}
             </div>
 
             <div className="card-body">
                 {isEditing ? (
                     <textarea
-                        value={newText}
-                        onChange={(e) => setNewText(e.target.value)}
+                        value={tempText}
+                        onChange={(e) => setTempText(e.target.value)}
                         className="edit-textarea"
                     />
                 ) : (
@@ -44,20 +46,35 @@ const Todo = ({ todo, deleteTodo, toggleTodo, editTodo }) => {
                 )}
             </div>
 
-            {/* Línea divisoria y acciones inferiores */}
             <div className="card-footer">
                 <div className="todo-actions-row">
-                    <button onClick={() => toggleTodo(todo.id)} className="action-btn check" title="Completar">
-                        {todo.completed ? '✅' : '✔️'}
-                    </button>
-
-                    <button onClick={() => deleteTodo(todo.id)} className="action-btn delete" title="Eliminar">
-                        🗑️
-                    </button>
-
-                    <button onClick={handleEdit} className="action-btn edit" title="Editar">
-                        {isEditing ? '💾' : '📝'}
-                    </button>
+                    {isEditing ? (
+                        <>
+                            <div className="tooltip-container">
+                                <button onClick={handleSave} className="action-btn">💾</button>
+                                <span className="tooltip-text save-tip">Guardar</span>
+                            </div>
+                            <div className="tooltip-container">
+                                <button onClick={() => setIsEditing(false)} className="action-btn">❌</button>
+                                <span className="tooltip-text cancel-tip">Cancelar</span>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="tooltip-container">
+                                <button onClick={() => toggleTodo(todo.id)} className="action-btn">✅</button>
+                                <span className="tooltip-text complete-tip">Completar</span>
+                            </div>
+                            <div className="tooltip-container">
+                                <button onClick={() => setIsEditing(true)} className="action-btn">📝</button>
+                                <span className="tooltip-text edit-tip">Editar</span>
+                            </div>
+                            <div className="tooltip-container">
+                                <button onClick={() => deleteTodo(todo.id)} className="action-btn">🗑️</button>
+                                <span className="tooltip-text delete-tip">Eliminar</span>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

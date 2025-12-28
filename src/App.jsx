@@ -17,7 +17,7 @@ function App() {
             id: crypto.randomUUID(),
             text,
             completed: false,
-            priority: 1 
+            priority: 1
         };
         setTodos([...todos, newTodo]);
     };
@@ -25,6 +25,12 @@ function App() {
     const changePriority = (id, newPriority) => {
         setTodos(todos.map(todo =>
             todo.id === id ? { ...todo, priority: newPriority } : todo
+        ));
+    };
+
+    const editTodo = (id, newText, newPriority) => {
+        setTodos(todos.map(todo =>
+            todo.id === id ? { ...todo, text: newText, priority: newPriority } : todo
         ));
     };
 
@@ -56,6 +62,7 @@ function App() {
                 todos={filteredTodos}
                 deleteTodo={deleteTodo}
                 toggleTodo={toggleTodo}
+                editTodo={editTodo}
             />
         </div>
     );
