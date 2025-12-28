@@ -21,9 +21,11 @@ body {
     padding: 2rem;
     border: var(--border-style);
     border-radius: 15px;
-    width: 100%;
-    max-width: 450px;
-    position: relative;
+    box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+    min-height: 50vh;
+    margin: 0 auto;
 }
 
 h1 {
@@ -102,12 +104,36 @@ select {
     opacity: 1;
 }
 
+.todo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
 .todo-item {
-    background: rgba(255, 255, 255, 0.5);
-    margin: 10px 0;
-    padding: 15px;
+    background: white;
     border: 2px solid var(--wood-brown);
-    border-radius: 10px;
+    border-radius: 12px;
+    padding: 15px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    min-height: 150px;
+    word-break: break-word;
+    box-shadow: 5px 5px 0px var(--accent-olive);
+}
+
+.todo-text {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
+}
+
+.todo-actions {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px dashed var(--wood-brown);
+    padding-top: 10px;
 }
