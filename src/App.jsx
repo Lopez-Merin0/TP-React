@@ -1,6 +1,7 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
+import ConfirmDialog from "./components/ConfirmDialog";
 
 function App() {
     const [todos, setTodos] = useState(() => {
@@ -8,6 +9,8 @@ function App() {
         return savedTodos ? JSON.parse(savedTodos) : [];
     });
     const [filter, setFilter] = useState("Todas");
+    const [confirmDelete, setConfirmDelete] = useState(null);
+
     useEffect(() => {
         localStorage.setItem("todos", JSON.stringify(todos));
     }, [todos]);
@@ -35,9 +38,16 @@ function App() {
     };
 
     const deleteTodo = (id) => {
-        if (window.confirm("¿Estás seguro de que deseas eliminar esta tarea?")) {
-            setTodos(todos.filter((todo) => todo.id !== id));
-        }
+        setConfirmDelete(id);
+    };
+
+    const handleConfirmDelete = () => {
+        setTodos(todos.filter((todo) => todo.id !== confirmDelete));
+        setConfirmDelete(null);
+    };
+
+    const handleCancelDelete = () => {
+        setConfirmDelete(null);
     };
 
     const toggleTodo = (id) => {
@@ -65,6 +75,13 @@ function App() {
                 editTodo={editTodo}
                 filter={filter}
             />
+            {confirmDelete && (
+                <ConfirmDialog
+                    message="¿Estás seguro de que deseas eliminar esta tarea?"
+                    onConfirm={handleConfirmDelete}
+                    onCancel={handleCancelDelete}
+                />
+            )}
         </div>
     );
 }
