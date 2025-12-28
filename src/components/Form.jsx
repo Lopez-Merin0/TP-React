@@ -16,26 +16,29 @@ const Form = ({ addTodo, setFilter }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="todo-form">
-            <div classNamer="input-group">
-                <span className="icon">📝</span>
+        <div className="form-section">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                 <input
                     type="text"
-                    placeholder="Añadir nueva tarea "
+                    placeholder="Añadir tarea..."
                     value={value}
-                    onChange={(e) => setValue(e.target.value)} />
-                <button type="submit" className="add-btn">+</button>
+                    onChange={(e) => setValue(e.target.value)}
+                />
+                <button type="submit" className="add-btn">＋</button>
+            </form>
+
+            {error && <p style={{ color: 'red', fontSize: '0.8rem', textAlign: 'center' }}>{error}</p>}
+
+            <div style={{ marginTop: '15px', textAlign: 'center' }}>
+                <label>Filtrar: </label>
+                <select onChange={(e) => setFilter(e.target.value)}>
+                    <option value="Todas">Todas 📋</option>
+                    <option value="Completadas">Hechas ✅</option>
+                    <option value="Pendientes">Por hacer ⏳</option>
+                </select>
             </div>
-            {error && <p className="error-message">{error}</p>}
-
-            <select onChange={(e) => setFilter(e.target.value)} className="filter-select">
-                <option value="Todas">Todas 📋</option>
-                <option value="Completadas">Completadas ✅</option>
-                <option value="Pendientes">Pendientes ⏳</option>
-            </select>
-        </form>
+        </div>
     );
-
 };
 
 export default Form;
