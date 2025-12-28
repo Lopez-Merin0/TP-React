@@ -20,7 +20,7 @@ const Form = ({ addTodo, setFilter }) => {
             <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
                 <input
                     type="text"
-                    placeholder="Añadir tarea..."
+                    placeholder="Añadir nueva tarea..."
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                 />
@@ -32,9 +32,10 @@ const Form = ({ addTodo, setFilter }) => {
             <div style={{ marginTop: '15px', textAlign: 'center' }}>
                 <label>Filtrar: </label>
                 <select onChange={(e) => setFilter(e.target.value)}>
-                    <option value="Todas">Todas 📋</option>
-                    <option value="Completadas">Hechas ✅</option>
-                    <option value="Pendientes">Por hacer ⏳</option>
+                    <option value="Seleccionar">Seleccionar filtro</option>
+                    <option value="Todas">Todas las tareas</option>
+                    <option value="Completadas">Tareas completadas</option>
+                    <option value="Pendientes">Tareas pendientes</option>
                 </select>
             </div>
         </div>

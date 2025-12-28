@@ -38,7 +38,7 @@ function App() {
     return (
         <div className="app-container">
             <header>
-                <h1>Mis pendientes</h1>
+                <h1>To do List 🦔</h1>
                 <Form addTodo={addTodo} setFilter={setFilter} />
             </header>
             <TodoList
