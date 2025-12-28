@@ -24,7 +24,7 @@ const Form = ({ addTodo, setFilter }) => {
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                 />
-                <button type="submit" className="add-btn">＋</button>
+                <button type="submit" className="add-btn">🌱</button>
             </form>
 
             {error && <p style={{ color: 'red', fontSize: '0.8rem', textAlign: 'center' }}>{error}</p>}
