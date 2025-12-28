@@ -30,7 +30,7 @@ const Form = ({ addTodo, setFilter }) => {
                 />
                 <div className="tooltip-container">
                     <button type="submit" className="add-btn">🌱</button>
-                    <span className="tooltip-text priority-tip">Añadir tarea</span>
+                    <span className="tooltip-text complete-tip">Añadir tarea</span>
                 </div>
             </form>
 

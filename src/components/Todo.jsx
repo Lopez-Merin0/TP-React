@@ -31,7 +31,7 @@ const Todo = ({ todo, deleteTodo, toggleTodo, editTodo }) => {
             </div>
 
             <div className={`status-badge ${todo.completed ? 'done' : 'pending'}`}>
-                ● {todo.completed ? 'REALIZADA' : 'PENDIENTE'}
+                {todo.completed ? 'REALIZADA' : 'PENDIENTE'}
             </div>
 
             <div className="card-body">

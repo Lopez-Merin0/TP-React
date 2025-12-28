@@ -83,10 +83,11 @@ select {
 }
 
 .priority-tip {
-    background-color: #795548;
-    bottom: 130%;
+    background-color: #2196F3;
+    top: 120%;
     left: 50%;
     transform: translateX(-50%);
+    bottom: auto;
 }
 
 .save-tip {
@@ -136,7 +137,10 @@ select {
 }
 
 .priority-tip::after {
-    border-top-color: #795548;
+    border-bottom-color: #2196F3;
+    border-top-color: transparent;
+    top: auto;
+    bottom: 100%;
 }
 
 .save-tip::after {
@@ -166,6 +170,12 @@ select {
 
 .slider-tooltip {
     width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.slider-tooltip .priority-tip {
+    position: absolute;
 }
 
 .todo-list {
@@ -276,6 +286,7 @@ select {
 
 .priority-section {
     padding: 10px 20px;
+    padding-bottom: 40px;
 }
 
 .priority-labels {
@@ -288,7 +299,71 @@ select {
 
 input[type="range"] {
     width: 100%;
-    accent-color: #e63946;
+    height: 8px;
+    margin: 10px 0 30px 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #a3b18a 0%, #c9ad7f 25%, #d4a574 50%, #c17a6e 75%, #b26a5e 100%);
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(93, 64, 55, 0.3);
+}
+
+input[type="range"]::-webkit-slider-track {
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #5d4037;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    margin-top: -6px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #5d4037;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+input[type="range"]:disabled {
+    opacity: 1;
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+    cursor: not-allowed;
+}
+
+input[type="range"]:disabled::-moz-range-thumb {
+    cursor: not-allowed;
+}
+
+input[type="range"]:disabled::-webkit-slider-track {
+    background: linear-gradient(to right, #a3b18a 0%, #c9ad7f 25%, #d4a574 50%, #c17a6e 75%, #b26a5e 100%);
+}
+
+input[type="range"]:disabled::-moz-range-track {
+    background: linear-gradient(to right, #a3b18a 0%, #c9ad7f 25%, #d4a574 50%, #c17a6e 75%, #b26a5e 100%);
 }
 
 .form-section {
